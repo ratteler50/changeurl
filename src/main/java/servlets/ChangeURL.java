@@ -9,8 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.gson.Gson;
-
 /**
  * Servlet implementation to change URL
  */
@@ -40,7 +38,7 @@ public class ChangeURL extends HttpServlet
 		String allString = request.getParameter("ALL");
 		boolean all = Boolean.parseBoolean(allString);
 		String newURL;
-		if(all)
+		if (all)
 			newURL = oldURL.replaceAll(regex, replacement);
 		else
 			newURL = oldURL.replaceFirst(regex, replacement);
@@ -62,7 +60,7 @@ public class ChangeURL extends HttpServlet
 		String allString = request.getParameter("ALL");
 		boolean all = Boolean.parseBoolean(allString);
 		String newURL;
-		if(all)
+		if (all)
 			newURL = oldURL.replaceAll(regex, replacement);
 		else
 			newURL = oldURL.replaceFirst(regex, replacement);
