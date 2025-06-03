@@ -37,13 +37,8 @@ public class ChangeURL extends HttpServlet
 		String replacement = request.getParameter("REPLACE");
 		String allString = request.getParameter("ALL");
 		boolean all = Boolean.parseBoolean(allString);
-		String newURL;
-		if (all)
-			newURL = oldURL.replaceAll(regex, replacement);
-		else
-			newURL = oldURL.replaceFirst(regex, replacement);
-
-		System.out.println(newURL);
+		String newURL = generateNewUrl(oldURL, regex, replacement, all);
+		System.out.println(newURL); // Keep this line for now
 		response.sendRedirect(newURL);
 	}
 
@@ -59,14 +54,18 @@ public class ChangeURL extends HttpServlet
 		String replacement = request.getParameter("REPLACE");
 		String allString = request.getParameter("ALL");
 		boolean all = Boolean.parseBoolean(allString);
-		String newURL;
-		if (all)
-			newURL = oldURL.replaceAll(regex, replacement);
-		else
-			newURL = oldURL.replaceFirst(regex, replacement);
-
+		String newURL = generateNewUrl(oldURL, regex, replacement, all);
 		RequestDispatcher dispatch = request.getRequestDispatcher(newURL);
 		dispatch.forward(request, response);
 	}
 
+	private String generateNewUrl(String oldURL, String regex, String replacement, boolean replaceAll) {
+		String newURL;
+		if (replaceAll) {
+			newURL = oldURL.replaceAll(regex, replacement);
+		} else {
+			newURL = oldURL.replaceFirst(regex, replacement);
+		}
+		return newURL;
+	}
 }
